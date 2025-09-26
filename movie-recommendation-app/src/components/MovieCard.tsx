@@ -1,11 +1,6 @@
 import Link from "next/link";
-
-interface MovieCardProps {
-  id: number;
-  title: string;
-  posterPath: string | null;
-  rating: number;
-}
+import Image from "next/image";
+import { MovieCardProps } from "../../interfaces";
 
 export default function MovieCard({
   id,
@@ -20,8 +15,10 @@ export default function MovieCard({
   return (
     <Link href={`/movie/${id}`}>
       <div className="relative group cursor-pointer overflow-hidden rounded-lg">
-        <img
-          src={imageUrl}
+        <Image
+          src={imageUrl || "/no-poster.png"}
+          width={500}
+          height={750}
           alt={title}
           className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
         />

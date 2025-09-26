@@ -6,38 +6,51 @@ import MovieList from "@/components/MovieList";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async (query: string) => {
     if (!query) return;
-    const res = await fetch(
-      `https://www.omdbapi.com/?apikey=${process.env.TMDB_API_KEY}&s=${query}`
-    );
-    const data = await res.json();
-    setMovies(data.Search || []);
+    setHasSearched(true);
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${
+          process.env.NEXT_PUBLIC_TMDB_API_KEY
+        }&query=${encodeURIComponent(query)}`
+      );
+      const data = await res.json();
+      setMovies(data.results || []);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white w-screen">
-      {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center py-20 bg-gradient-to-r from-pink-800 via-black to-blue-600">
-        <h1 className="text-4xl font-bold mb-3">🎬 MovieApp</h1>
-        <p className="text-lg mb-6">
-          Search movies and discover recommendations
-        </p>
-        <div className="w-full max-w-xl">
-          <SearchBar onSearch={handleSearch} />
+    <div className="min-h-screen bg-gray-950 text-white w-auto">
+      <section
+        className="relative flex flex-col items-center justify-center text-center py-28 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('/resident.jpg')`,
+        }}
+      >
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        <div className="relative z-10">
+          <h1 className="text-5xl font-extrabold mb-4">🎬 MovieApp</h1>
+          <p className="text-lg mb-6 text-gray-200">
+            Search movies and discover recommendations
+          </p>
+          <div className="w-full max-w-xl">
+            <SearchBar onSearch={handleSearch} />
+          </div>
         </div>
       </section>
 
-      {/* Results Section */}
+      {/* this is results section */}
       <section className="p-8">
-        {movies.length > 0 ? (
-          <MovieList movies={movies} />
-        ) : (
-          <p className="text-center text-gray-400">
-            No movies found. Try searching above.
-          </p>
-        )}
+        {hasSearched && <MovieList movies={movies} loading={loading} />}
       </section>
     </div>
   );

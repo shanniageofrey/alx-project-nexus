@@ -1,17 +1,13 @@
+import { MovieListProps } from "../../interfaces";
 import MovieCard from "./MovieCard";
 
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string | null;
-  vote_average: number;
-}
+export default function MovieList({ movies, loading }: MovieListProps) {
+  if (loading) {
+    return (
+      <p className="text-center text-gray-600 mt-6 ">Searching movies...</p>
+    );
+  }
 
-interface MovieListProps {
-  movies: Movie[];
-}
-
-export default function MovieList({ movies }: MovieListProps) {
   if (!movies || movies.length === 0) {
     return (
       <p className="text-center text-gray-600 mt-6">
