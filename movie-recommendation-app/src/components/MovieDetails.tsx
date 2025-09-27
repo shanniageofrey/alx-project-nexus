@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { fetchRecommendations } from "../lib/api";
 import MovieList from "./MovieList";
@@ -44,7 +46,7 @@ export default function MovieDetail({ movie }: MovieDetailProps) {
           width={500}
           height={750}
           className="w-full md:w-1/3 rounded-lg shadow"
-          priority // optional: for above-the-fold images
+          priority
         />
         <div className="flex-1">
           <h1 className="text-2xl font-bold">{movie.title}</h1>

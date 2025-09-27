@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+"use client";
+
 import MovieDetail from "@/components/MovieDetails";
-import NavBar from "@/components/NavBar";
 import { fetchMovieById } from "@/lib/api";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -42,7 +44,6 @@ export default function MoviePage() {
 
   return (
     <main className="min-h-screen">
-      <NavBar />
       <MovieDetail movie={movie} />
     </main>
   );

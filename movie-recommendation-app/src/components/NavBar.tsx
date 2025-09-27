@@ -5,7 +5,7 @@ export default function NavBar() {
     <nav className="bg-pink-800 text-ehit shadow-md">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <Link href="/" className="text-2xl font-bold hover:text-gray-200">
-          MovieApp 🎥
+          SavyFlix 🎥
         </Link>
         <div className="flex gap-6">
           <Link href="/" className="hover:text-gray-200">
@@ -13,6 +13,9 @@ export default function NavBar() {
           </Link>
           <Link href="/favorites" className="hover:text-gray-200">
             Favorites
+          </Link>
+          <Link href="/login" className="hover:text-gray-200">
+            Login
           </Link>
         </div>
       </div>

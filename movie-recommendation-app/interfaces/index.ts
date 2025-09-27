@@ -6,6 +6,13 @@ export interface MovieDetailProps {
   movie: Movie;
 }
 
+export interface FavoriteMovie {
+  id: number;
+  title: string;
+  posterPath: string | null;
+  rating: number;
+}
+
 
 export interface Movie {
   id: number;

@@ -5,12 +5,12 @@
   --foreground: #636e72;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.hero-section {
+  background-image: url('/resident.jpg');
+  background-size: cover;
+  background-position: center;
 }
+
 
 @media (prefers-color-scheme: dark) {
   :root {
