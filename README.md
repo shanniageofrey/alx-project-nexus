@@ -62,5 +62,5 @@ The project demonstrates how to integrate external APIs, handle authentication, 
 
 1. Clone the repository  
    ```bash
-   git clone https://github.com/your-username/savyflix.git
-   cd savyflix
+   git clone https://github.com/your-username/alx-project-nexus.git
+   cd alx-project-nexus
