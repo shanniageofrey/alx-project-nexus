@@ -12,7 +12,7 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: { children: ReactNode }) { // it wraps the app and provides auth state
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +22,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
       setLoading(false);
-    });
+    });//onAuthStateChange listens for login/logout changes
 
     
     supabase.auth.getSession().then(({ data }) => {
@@ -41,9 +41,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return (
     <AuthContext.Provider value={{ user, loading, logout }}>
       {children}
-    </AuthContext.Provider>
+    </AuthContext.Provider> //user authentication info is stored in context
   );
-}
+} 
 
 export function useAuth() {
   const context = useContext(AuthContext);
